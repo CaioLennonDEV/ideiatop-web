@@ -39,63 +39,66 @@ export const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-background relative overflow-hidden">
-      {/* Abstract Background Element */}
-      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-secondary/5 rounded-full blur-[120px]" />
+      {/* Vibrant Background Elements */}
+      <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" />
+      <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[120px]" />
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
         className="w-full max-w-[480px] relative z-10"
       >
-        <div className="pro-card p-10 md:p-14 space-y-10">
-          <div className="text-center space-y-3">
-            <h1 className="text-4xl font-bold text-foreground">Acesso Restrito</h1>
-            <p className="text-muted-foreground font-light italic">Gestão de Experiência Gastronômica</p>
+        <div className="bg-white rounded-[3rem] p-10 md:p-14 space-y-10 shadow-2xl shadow-primary/5 border border-border">
+          <div className="text-center space-y-4">
+            <div className="inline-block px-4 py-1 rounded-full bg-primary/10 border border-primary/20 mb-2">
+              <span className="text-primary text-[10px] font-black uppercase tracking-widest">Área Legal</span>
+            </div>
+            <h1 className="text-5xl font-black text-foreground tracking-tight">Login.</h1>
+            <p className="text-muted-foreground font-medium">Acesse sua conta para gerenciar seu cardápio</p>
           </div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            <div className="space-y-2">
-              <label className="text-xs uppercase tracking-[0.2em] font-bold text-muted-foreground ml-1">E-mail Corporativo</label>
-              <div className="relative">
-                <Mail className="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 text-primary" />
+            <div className="space-y-3">
+              <label className="text-xs font-black text-muted-foreground ml-1 uppercase tracking-widest">Seu E-mail</label>
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary group-focus-within:scale-110 transition-transform" />
                 <input
                   {...register('email')}
                   type="email"
-                  className="w-full bg-transparent border-b border-border py-4 pl-8 pr-4 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-all font-light"
-                  placeholder="exemplo@empresa.com"
+                  className="w-full bg-muted/30 border-2 border-transparent rounded-2xl py-4 pl-12 pr-4 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:bg-white transition-all font-bold"
+                  placeholder="seu@email.com"
                 />
               </div>
-              {errors.email && <p className="text-red-500 text-[10px] mt-1 ml-1 font-bold italic">{errors.email.message}</p>}
+              {errors.email && <p className="text-red-500 text-xs mt-1 ml-1 font-black">{errors.email.message}</p>}
             </div>
 
-            <div className="space-y-2">
-              <label className="text-xs uppercase tracking-[0.2em] font-bold text-muted-foreground ml-1">Senha</label>
-              <div className="relative">
-                <Lock className="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 text-primary" />
+            <div className="space-y-3">
+              <label className="text-xs font-black text-muted-foreground ml-1 uppercase tracking-widest">Sua Senha</label>
+              <div className="relative group">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary group-focus-within:scale-110 transition-transform" />
                 <input
                   {...register('password')}
                   type="password"
-                  className="w-full bg-transparent border-b border-border py-4 pl-8 pr-4 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-all font-light"
+                  className="w-full bg-muted/30 border-2 border-transparent rounded-2xl py-4 pl-12 pr-4 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:border-primary/30 focus:bg-white transition-all font-bold"
                   placeholder="••••••••"
                 />
               </div>
-              {errors.password && <p className="text-red-500 text-[10px] mt-1 ml-1 font-bold italic">{errors.password.message}</p>}
+              {errors.password && <p className="text-red-500 text-xs mt-1 ml-1 font-black">{errors.password.message}</p>}
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="pro-button w-full flex items-center justify-center gap-3 mt-4"
+              className="w-full bg-secondary hover:bg-secondary/90 text-foreground px-8 py-5 rounded-[2rem] font-black flex items-center justify-center gap-3 transition-all active:scale-95 shadow-xl shadow-secondary/20 group text-lg"
             >
-              {isSubmitting ? 'Verificando...' : 'Entrar no Sistema'}
-              {!isSubmitting && <ArrowRight className="w-5 h-5" />}
+              {isSubmitting ? 'Entrando...' : 'Entrar Agora'}
+              {!isSubmitting && <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />}
             </button>
           </form>
 
-          <div className="pt-6 border-t border-border mt-10">
-            <p className="text-center text-muted-foreground text-xs font-light">
-              Problemas com acesso? <span className="text-primary hover:underline cursor-pointer font-bold">Suporte Técnico</span>
+          <div className="pt-8 border-t border-border/50 text-center">
+            <p className="text-muted-foreground text-sm font-medium">
+              Esqueceu a senha? <span className="text-primary hover:underline cursor-pointer font-black">Recuperar</span>
             </p>
           </div>
         </div>

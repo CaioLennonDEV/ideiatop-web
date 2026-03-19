@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { GlassCard } from '../components/ui/GlassCard';
+import { useState, useEffect } from 'react';
 import { formatCurrency } from '../lib/utils';
-import { ShoppingCart, Search, Filter, Pizza, Utensils, Cake, MoreHorizontal, Hamburger } from 'lucide-react';
+import { ShoppingCart, Search, Filter, Pizza, Cake, MoreHorizontal, Hamburger } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Product } from '../types';
 
@@ -73,59 +72,55 @@ export const PublicMenu = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Premium Hero Section */}
-      <section className="relative h-[40vh] min-h-[300px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/assets/banner.png" 
-            alt="Banner" 
-            className="w-full h-full object-cover opacity-30 blur-[2px]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/40 to-background" />
+      {/* Simple & Vibrant Hero Section */}
+      <section className="relative px-4 py-20 flex flex-col items-center justify-center text-center overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-10">
+          <div className="absolute top-0 left-0 w-64 h-64 bg-primary rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-secondary rounded-full blur-[100px] translate-x-1/2 translate-y-1/2" />
         </div>
         
-        <div className="relative z-10 text-center space-y-4 px-4 max-w-4xl">
+        <div className="relative z-10 space-y-6 max-w-4xl">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="inline-block"
+            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20"
           >
-            <span className="text-primary uppercase tracking-[0.4em] text-xs font-bold mb-4 block">Experiência Gastronômica</span>
+            <span className="text-primary uppercase tracking-widest text-xs font-black">Sabor & Qualidade</span>
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold text-foreground leading-tight"
+            className="text-5xl md:text-8xl font-black text-foreground leading-tight"
           >
-            Nossas Seleções
+            Nosso <span className="text-primary italic">Cardápio</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-muted-foreground text-lg max-w-2xl mx-auto font-light italic"
+            className="text-muted-foreground text-xl max-w-2xl mx-auto font-medium"
           >
-            A fusão perfeita entre tradição e requinte para o seu paladar.
+            Escolha sua delícia favorita e faça seu pedido agora mesmo!
           </motion.p>
         </div>
       </section>
 
       {/* Main Content Area */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 -mt-12 relative z-20">
-        {/* Navigation & Search */}
-        <div className="nav-blur p-4 rounded-3xl shadow-xl shadow-black/5 flex flex-col lg:flex-row gap-6 items-center mb-12">
-          <div className="flex gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide w-full lg:w-auto">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 relative z-20">
+        {/* Navigation & Search - Simplified */}
+        <div className="bg-white p-6 rounded-[2.5rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] border border-border flex flex-col lg:flex-row gap-6 items-center mb-12">
+          <div className="flex gap-3 overflow-x-auto pb-2 lg:pb-0 scrollbar-hide w-full lg:w-auto">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`category-pill ${
+                className={`category-pill flex items-center gap-2 px-6 py-3 rounded-2xl transition-all font-bold text-sm ${
                   selectedCategory === cat.id 
-                    ? 'bg-primary border-primary text-white shadow-lg shadow-primary/20' 
-                    : 'bg-white border-border text-muted-foreground hover:bg-muted/50'
+                    ? 'bg-secondary text-foreground shadow-lg shadow-secondary/20 scale-105' 
+                    : 'bg-muted/30 border-transparent text-muted-foreground hover:bg-muted/60'
                 }`}
               >
-                <cat.icon className="w-4 h-4 mr-2 inline-block" />
+                <cat.icon className="w-4 h-4" />
                 {cat.name}
               </button>
             ))}
@@ -135,8 +130,8 @@ export const PublicMenu = () => {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground/50" />
             <input 
               type="text"
-              placeholder="Encontre sua delícia desejada..."
-              className="w-full bg-muted/20 border-transparent rounded-2xl py-4 pl-12 pr-4 text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all font-light"
+              placeholder="Estou procurando por..."
+              className="w-full bg-muted/40 border-transparent rounded-2xl py-4 pl-12 pr-4 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-secondary/50 transition-all font-bold"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -153,44 +148,42 @@ export const PublicMenu = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="pro-card group flex flex-col h-full overflow-hidden"
+                className="bg-white rounded-[2.5rem] border border-border shadow-sm overflow-hidden flex flex-col group hover:shadow-xl hover:shadow-primary/5 transition-all duration-300"
               >
                 {/* Product Image */}
-                <div className="aspect-[4/3] w-full relative overflow-hidden bg-muted/10">
+                <div className="aspect-[4/3] w-full relative overflow-hidden bg-muted/20">
                   {product.imageUrl ? (
                     <img 
                       src={product.imageUrl} 
                       alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
                       <Pizza className="w-12 h-12 text-muted-foreground/20" />
                     </div>
                   )}
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-full border border-black/5 shadow-sm">
-                    <span className="text-primary font-bold text-sm tracking-tighter">
-                      {formatCurrency(product.price)}
-                    </span>
+                  <div className="absolute top-4 right-4 bg-primary text-white font-black px-4 py-2 rounded-2xl shadow-lg ring-4 ring-white">
+                    {formatCurrency(product.price)}
                   </div>
                 </div>
                 
                 {/* Content */}
-                <div className="p-7 space-y-4 flex flex-col flex-1">
+                <div className="p-8 space-y-4 flex flex-col flex-1">
                   <div className="space-y-1">
-                    <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/60">{product.productType.name}</span>
-                    <h3 className="text-2xl font-bold text-foreground leading-tight">
+                    <span className="text-xs font-black text-primary/80 uppercase tracking-widest">{product.productType.name}</span>
+                    <h3 className="text-2xl font-black text-foreground">
                       {product.name}
                     </h3>
                   </div>
                   
-                  <p className="text-muted-foreground text-sm leading-relaxed flex-1 font-light italic">
-                    "{product.description}"
+                  <p className="text-muted-foreground text-sm leading-relaxed flex-1 font-medium">
+                    {product.description}
                   </p>
 
-                  <button className="pro-button mt-4 bg-foreground hover:bg-black w-full flex items-center justify-center gap-2 group-active:scale-95">
-                    <ShoppingCart className="w-4 h-4" />
-                    Adicionar ao Pedido
+                  <button className="w-full bg-secondary hover:bg-secondary/90 text-foreground px-8 py-4 rounded-2xl font-black flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-secondary/20">
+                    <ShoppingCart className="w-5 h-5" />
+                    Fazer Pedido
                   </button>
                 </div>
               </motion.div>
@@ -199,11 +192,11 @@ export const PublicMenu = () => {
         </div>
       </div>
 
-      {/* Product Detail Modal (Compact Professional Design) */}
+      {/* Product Detail Modal */}
       <AnimatePresence>
         {selectedProduct && (
           <div 
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md"
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-foreground/20 backdrop-blur-md"
             onClick={() => setSelectedProduct(null)}
           >
             <motion.div
@@ -211,30 +204,32 @@ export const PublicMenu = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               onClick={(e) => e.stopPropagation()}
-              className="w-full max-w-lg pro-card p-0 overflow-hidden"
+              className="w-full max-w-lg bg-white rounded-[3rem] border border-border shadow-2xl overflow-hidden"
             >
               <div className="relative aspect-[16/10]">
                 <img src={selectedProduct.imageUrl} className="w-full h-full object-cover" />
                 <button 
                   onClick={() => setSelectedProduct(null)}
-                  className="absolute top-4 right-4 bg-black/60 text-white rounded-full p-2 hover:bg-black"
+                  className="absolute top-6 right-6 bg-white/90 text-foreground rounded-2xl p-2 hover:bg-white shadow-xl font-bold"
                 >
                   &times;
                 </button>
               </div>
-              <div className="p-8 space-y-6">
+              <div className="p-10 space-y-6">
                 <div className="flex justify-between items-start">
                   <div>
-                    <span className="text-xs uppercase tracking-widest text-primary font-bold">{selectedProduct.productType.name}</span>
-                    <h2 className="text-3xl font-bold text-foreground">{selectedProduct.name}</h2>
+                    <span className="text-sm font-black text-primary uppercase tracking-widest">{selectedProduct.productType.name}</span>
+                    <h2 className="text-4xl font-black text-foreground">{selectedProduct.name}</h2>
                   </div>
-                  <span className="text-3xl font-serif font-bold text-primary">{formatCurrency(selectedProduct.price)}</span>
                 </div>
-                <p className="text-muted-foreground leading-relaxed text-lg">{selectedProduct.description}</p>
-                <button className="pro-button w-full flex items-center justify-center gap-3">
-                  <ShoppingCart className="w-5 h-5" />
-                  Confirmar Adição
-                </button>
+                <p className="text-muted-foreground leading-relaxed text-lg font-medium">{selectedProduct.description}</p>
+                <div className="flex items-center justify-between pt-4">
+                  <span className="text-3xl font-black text-primary">{formatCurrency(selectedProduct.price)}</span>
+                  <button className="bg-secondary text-foreground px-10 py-4 rounded-2xl font-black flex items-center justify-center gap-3 shadow-xl shadow-secondary/20 hover:scale-105 transition-transform active:scale-95">
+                    <ShoppingCart className="w-6 h-6" />
+                    Adicionar
+                  </button>
+                </div>
               </div>
             </motion.div>
           </div>
