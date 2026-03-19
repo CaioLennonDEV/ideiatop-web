@@ -1,0 +1,88 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap');
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: 1.5rem;
+  --radius-md: 1rem;
+  --radius-sm: 0.5rem;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Playfair Display', ui-serif, Georgia, serif;
+}
+
+:root {
+  --background: 34 33% 97%; /* Soft Warm Parchment */
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --primary: 25 80% 45%; /* Sophisticated Terracotta/Burnt Orange */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 10 70% 40%; /* Deep Red */
+  --secondary-foreground: 0 0% 100%;
+  --muted: 34 33% 90%;
+  --muted-foreground: 25 15% 45%;
+  --accent: 25 80% 45%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 20% 98%;
+  --border: 34 20% 88%;
+  --input: 34 20% 88%;
+  --ring: 25 80% 45%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/20;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .pro-card {
+    @apply bg-card rounded-[2rem] border border-border shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_20px_50px_rgba(230,126,34,0.08)] hover:-translate-y-1;
+  }
+  
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl;
+  }
+
+  .pro-button {
+    @apply bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg shadow-primary/20 transition-all active:scale-95 disabled:opacity-50;
+  }
+
+  .nav-blur {
+    @apply sticky top-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border;
+  }
+
+  .category-pill {
+    @apply px-5 py-2.5 rounded-full border transition-all whitespace-nowrap text-sm font-medium;
+  }
+}
